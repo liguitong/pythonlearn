@@ -102,3 +102,4 @@ ENV/
 dist
 __pycache__
 *~
+*#

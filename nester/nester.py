@@ -2,13 +2,14 @@
    print_lol which to print a list that include 
    another list also"""
   
-def print_lol(the_list, level=0):
+def print_lol(the_list, indent=False, level=0):
     """The function use a parameter named the_list to print,
     one item one line"""
     for each_item in the_list:
         if isinstance(each_item,list):
-            print_lol(each_item, level+1)
+            print_lol(each_item, indent, level+1)
         else:
-            for step in range(level):
-                print("\t", end='')
+            if indent:
+                for step in range(level):
+                    print("\t", end='')
             print(each_item)
