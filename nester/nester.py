@@ -2,7 +2,7 @@
    print_lol which to print a list that include 
    another list also"""
   
-def print_lol(the_list, level):
+def print_lol(the_list, level=0):
     """The function use a parameter named the_list to print,
     one item one line"""
     for each_item in the_list:
