@@ -1,4 +1,5 @@
 import os
+import nester
 """ A test program to test exception"""
 man = []
 other = []
@@ -20,8 +21,8 @@ except IOError:
     print("The datafile is missing")
 try:
     with open('man_data.txt', 'w') as man_data,open('other_data.txt', 'w') as other_data:
-        print(man,file=man_data)
-        print(other,file=other_data)
+        nester.print_lol(man,fh=man_data)
+        nester.print_lol(other,fh=other_data)
 except IOError as err:
     print("Can't not write to file" + str(err))
 finally:
