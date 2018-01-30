@@ -26,19 +26,11 @@ try:
         julie = data.strip().split(',')
 except IOError as err:
     print('File Error: ' +str(err))
-clean_james=[]
-clean_mikey=[]
-clean_sarah=[]
-clean_julie=[]
-for jame in james:
-    clean_james.append(sanitize(jame))
-for mike in mikey:
-    clean_mikey.append(sanitize(mike))
-for sara in sarah:
-    clean_sarah.append(sanitize(sara))
-for juli in julie:
-    clean_julie.append(sanitize(juli))
-    
+clean_james=[sanitize(each_t) for each_t in james]
+clean_mikey=[sanitize(each_t) for each_t in mikey]
+clean_sarah=[sanitize(each_t) for each_t in sarah]
+clean_julie=[sanitize(each_t) for each_t in julie]
+
 print(sorted(clean_james))
 print(sorted(clean_mikey))
 print(sorted(clean_sarah))
