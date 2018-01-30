@@ -1,5 +1,6 @@
 import os
 import nester
+import pickle
 """ A test program to test exception"""
 man = []
 other = []
@@ -20,11 +21,13 @@ try:
 except IOError:
     print("The datafile is missing")
 try:
-    with open('man_data.txt', 'w') as man_data,open('other_data.txt', 'w') as other_data:
-        nester.print_lol(man,fh=man_data)
-        nester.print_lol(other,fh=other_data)
+    with open('man_data.txt', 'wb') as man_data,open('other_data.txt', 'wb') as other_data:
+        pickle.dump(man, man_data)
+        pickle.dump(other,other_data)
 except IOError as err:
     print("Can't not write to file" + str(err))
+except pickle.PickleError as perr:
+    print('Pickling Error:' + str(perr))
 finally:
     man_data.close()
     other_data.close()
