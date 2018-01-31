@@ -11,27 +11,30 @@ def sanitize(time_string):
 
     (mins,secs)  =time_string.split(splitter)
     return (mins + '.' + secs)
-try:
-    with open('./kelly/james.txt','r') as jaf:
-        data = jaf.readline()
-        james = data.strip().split(',')
-    with open('./kelly/mikey.txt','r') as mif:
-        data =mif.readline()
-        mikey = data.strip().split(',')
-    with open('./kelly/sarah.txt','r') as saf:
-        data = saf.readline()
-        sarah = data.strip().split(',')
-    with open('./kelly/julie.txt','r') as juf:
-        data = juf.readline()
-        julie = data.strip().split(',')
-except IOError as err:
-    print('File Error: ' +str(err))
-clean_james=[sanitize(each_t) for each_t in james]
-clean_mikey=[sanitize(each_t) for each_t in mikey]
-clean_sarah=[sanitize(each_t) for each_t in sarah]
-clean_julie=[sanitize(each_t) for each_t in julie]
+class AthleteList(list):
+    ''' the athlete class extend list'''
+    def __init__(self, a_name,a_dob=None, a_times=[]):
+        list.__init__([])
+        self.name=a_name
+        self.dob=a_dob
+        self.extend(a_times)
+    def top(self,num):
+        return sorted(set([sanitize(t) for t in self]))[0:num]
+def get_coach_data(filename):
+    try:
+        with open(filename) as f:
+            data = f.readline()
+            temp = data.strip().split(',')
+            return AthleteList(temp.pop(0), temp.pop(0), temp)
+    except IOError as ioerr:
+        print('File error: ' + str(ioerr))
+        return None
+james = get_coach_data('james2.txt')
+julie = get_coach_data('julie2.txt')
+mikey = get_coach_data('mikey2.txt')
+sarah = get_coach_data('sarah2.txt')
+print(james.name +"'s fastest times are: " + str(james.top(3)))
+print(julie.name +"'s fastest times are: " + str(julie.top(3)))
+print(mikey.name +"'s fastest times are: " + str(mikey.top(2)))
+print(sarah.name +"'s fastest times are: " + str(sarah.top(3)))
 
-print(sorted(clean_james))
-print(sorted(clean_mikey))
-print(sorted(clean_sarah))
-print(sorted(clean_julie))
