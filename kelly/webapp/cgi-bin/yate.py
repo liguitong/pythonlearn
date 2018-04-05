@@ -29,6 +29,8 @@ def end_form(submit_msg="Submit"):
 def radio_button(rb_name, rb_value):
     ''' a radio button with specified name and value'''
     return '<input type="radio" name="' + rb_name + '" value="' + rb_value +'">' + rb_value + '<br />'
+def radio_button_id(rb_name, rb_value, rb_id):
+    return '<input type="radio" name="' + rb_name + '" value="' + str(rb_id) +'">'  + rb_value + '<br />'
 def u_list(items):
     ''' an unsorted list '''
     u_string = '<ul>'

@@ -9,6 +9,13 @@ def get_names_from_store():
     response = [row[0] for row in results.fetchall()]
     connection.close()
     return (response)
+def get_namesID_from_store():
+    connection = sqlite3.connect(db_name)
+    cursor = connection.cursor()
+    results = cursor.execute("""SELECT NAME,ID FROM athletes""")
+    response = results.fetchall()
+    connection.close()
+    return response
 def get_athlete_from_id(athlete_id):
     connection = sqlite3.connect(db_name)
 
